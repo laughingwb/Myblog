@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block welcome_content %}博客后台管理{% endblock %}
+{% block navcontent %}
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+           <a href="/man/lifemanage/">
+                <i class="pe-7s-search"></i>
+                <p>生活笔记</p>
+            </a>
+        </li>
+        <li>
+           <a href="/man/techmanage/" >
+                <i class="pe-7s-study"></i>
+                <p>技术瞎谈</p>
+            </a>
+        </li>
+        <li>
+           <a href="/man/myinfomanage/" >
+                <i class="pe-7s-user"></i>
+                <p>信息编辑</p>
+            </a>
+        </li>
+        <li>
+           <a href="/man/messagemanage/" >
+                <i class="pe-7s-mail"></i>
+                <p>留言管理</p>
+            </a>
+        </li>
+        <li>
+           <a href="/man/loginout/" >
+                <i class="pe-7s-door-lock"></i>
+                <p>退出</p>
+            </a>
+        </li>
+   </ul>
+{% endblock %}

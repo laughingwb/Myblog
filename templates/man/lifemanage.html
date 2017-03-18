@@ -1,0 +1,69 @@
+{% extends 'man/manbase.html' %}
+
+{% block bodycontent %}
+<div class="container" style="background-color: #ffffff">
+    <div class="row">
+        <div class="col-md-3">
+        <form action="/mylife/addtype/" method="POST" class="form" autocomplete="off">
+                {% csrf_token %}
+            <div class="row">
+                <input type="submit" value="添加" class="btn btn-simple btn-info"/>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" required="required" id="aricletype" name="aricletype" placeholder="添加文章分类" class="form-control">
+                </div>
+            </div>
+         </form>
+        <form action="/mylife/subtracttype/" method="POST" class="form" autocomplete="off">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                  <ul class="nav nav-stacked nav-icons" role="tablist">
+                    {% for list in typeList %}
+                       <li style="margin-top: 10px"><input type="checkbox" name="check_box_list" value={{ list.type_name }} id={{ list.type_name }} data-toggle="checkbox"><label style="margin-left: 10px">{{ list.type_name }}</label></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="删除" class="btn btn-simple btn-info"/>
+            </div>
+        </form>
+        </div>
+        <form action="/mylife/addAricle/" method="POST" id="formid">
+        {% csrf_token %}
+        <div class=col-md-8>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" required="required" class="form-control" id="title" name="title" placeholder="请输入文章标题" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select required="required" name="type" class="selectpicker" data-style="form-control">
+                            <option disabled selected>请选择分类</option>
+                            {% for list in typeList %}
+                                 <option value={{ list.type_name  }}>{{ list.type_name  }} </option>#}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button onclick=submitAricle() type="submit" class="form-actions btn btn-social btn-block btn-lg btn-info">提交</button><br>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px">
+                <div class="col-md-12">
+                    <textarea name="content" id="content" required="required" class="form-control" placeholder="文章内容" name="content" rows="25"></textarea>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+    <script>
+        function submitAricle() {
+            var article = document.getElementById("content").value;
+        }
+    </script>
+{% endblock %}
