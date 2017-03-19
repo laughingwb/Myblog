@@ -30,8 +30,6 @@ def addAricle(request):
     aricle_content = request.POST.get('content', '')
     typeAll = Aricletype.objects.all();
     typeObj = Aricletype.objects.filter(type_name=aricle_type)
-
-    print(aricle_content)
     life_note = Lifenote.objects.create(aricletype=typeObj[0],title_note=aricle_title)
     life_note.content = aricle_content
     life_note.save();
@@ -49,6 +47,15 @@ def subtracttype(request):
         aricletype.delete();
     aricletype = Aricletype.objects.all();
     return render(request, 'man/lifemanage.html', {'typeList': aricletype})
+
+@login_required()
+def aricledetail(request):
+    aricle_id = request.GET.get('aricle_id', '')
+    print(aricle_id)
+    aricledetail = Lifenote.objects.get(pk=aricle_id)
+    myself = Myself.objects.all();
+    return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'myselfInfo':myself[0]})
+
 
 def showHome(request):
     notelist = Lifenote.objects.all();

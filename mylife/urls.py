@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^addtype/$', mylife_views.addtype, name='addtype'),
     url(r'^addAricle/$', mylife_views.addAricle, name='addAricle'),
     url(r'^subtracttype/$', mylife_views.subtracttype, name='subtracttype'),
+    url(r'^aricledetail/$', mylife_views.aricledetail, name='aricledetail'),
 ]

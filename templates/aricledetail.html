@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block bodyleft %}
+     <div class="card">
+        <div class="card-block">
+            <div class="row text-center">
+                <label style="font-size: 20px;margin-top: 10px">{{ aricledetail.title_note }}</label>
+            </div>
+            <div class="collapse navbar-collapse" style="margin-top: 10px">
+                <ul class="nav navbar-nav" style="font-size: 14px;color: #00bbff">
+                    <li><i style="font-size: 16px;margin-right: 5px" class="pe-7s-ticket"></i>{{ aricledetail.aricletype }}</li>
+                    <li style="margin-left: 20px"><i style="font-size: 16px;margin-right: 5px" class="pe-7s-stopwatch"></i>{{ aricledetail.created_on|date:"Y-m-d H:i:s"  }}</li>
+                    <li style="margin-left: 20px"><i style="font-size: 14px" >点赞：</i>{{ aricledetail.praisecount }}</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+                   <p style="margin-left: 10px;margin-top: 10px">{{ aricledetail.content|linebreaksbr }}</p>
+                </div>
+            </div>
+        </div>
+     </div>
+{% endblock %}
