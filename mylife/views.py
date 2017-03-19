@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import logout,login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Aricletype,Lifenote
+from .models import Aricletype,Lifenote,CommentAricle
 from aboutme.models import Myself
 
 # Create your views here.
@@ -53,8 +53,12 @@ def aricledetail(request):
     aricle_id = request.GET.get('aricle_id', '')
     print(aricle_id)
     aricledetail = Lifenote.objects.get(pk=aricle_id)
+
+    commentlist = (CommentAricle.objects.filter(lifenote=aricledetail).values('content_comment', 'user_name','time','email'))
+    print(commentlist)
+
     myself = Myself.objects.all();
-    return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'myselfInfo':myself[0]})
+    return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'myselfInfo':myself[0],'commentlist':commentlist,'commentmun':len(commentlist)})
 
 
 def showHome(request):

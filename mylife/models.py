@@ -17,12 +17,21 @@ class Lifenote(models.Model):
     content = models.TextField(max_length=1000)
     praisecount = models.IntegerField(default=0)
 
-class Comment(models.Model):
-    content = models.CharField(max_length=500)
+class CommentAricle(models.Model):
+    content_comment = models.TextField(max_length=500)
     user_name = models.CharField(max_length=30)
-    Lifenote = ForeignKey(Lifenote, on_delete=models.CASCADE)
-    def __str__(self):
-        return '{1} - {2}'.format(self.user_name,self.Lifenote.title_note)
+    time = models.DateTimeField(auto_now_add=True)
+    email = models.CharField(max_length=30)
+    lifenote = ForeignKey(Lifenote, on_delete=models.CASCADE)
+
+# class Comment(models.Model):
+#     content = models.CharField(max_length=500)
+#     user_name = models.CharField(max_length=30)
+#     time_comment = models.CharField(max_length=30)
+#     email = models.CharField(max_length=30)
+#     lifenote = ForeignKey(Lifenote, on_delete=models.CASCADE)
+    # def __str__(self):
+    #     return '{1} - {2}'.format(self.user_name,self.Lifenote.title_note)
 
 
 
