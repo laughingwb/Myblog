@@ -55,12 +55,29 @@ def aricledetail(request):
     aricledetail = Lifenote.objects.get(pk=aricle_id)
 
     commentlist = (CommentAricle.objects.filter(lifenote=aricledetail).values('content_comment', 'user_name','time','email'))
-    print(commentlist)
-
     myself = Myself.objects.all();
-    return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'myselfInfo':myself[0],'commentlist':commentlist,'commentmun':len(commentlist)})
+    return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'aricle_id':aricle_id,'myselfInfo':myself[0],'commentlist':commentlist,'commentmun':len(commentlist)})
 
 
+@login_required()
+def postcomment(request):
+    username = request.POST.get('username', '')
+    email = request.POST.get('email', '')
+    comment = request.POST.get('comment', '')
+    aricle_id = request.POST.get('aricleID', '')
+    lifenote = Lifenote.objects.get(pk=aricle_id)
+
+    newComment = CommentAricle.objects.create(lifenote=lifenote,content_comment=comment)
+    newComment.user_name = username
+    newComment.email = email
+    newComment.save()
+
+    commentlist = (CommentAricle.objects.filter(lifenote=lifenote).values('content_comment', 'user_name', 'time', 'email'))
+    myself = Myself.objects.all();
+
+    return render(request, 'aricledetail.html',
+                  {'aricledetail': lifenote, 'myselfInfo': myself[0], 'commentlist': commentlist,
+                   'commentmun': len(commentlist)})
 def showHome(request):
     notelist = Lifenote.objects.all();
     myself = Myself.objects.all();
