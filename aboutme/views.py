@@ -13,7 +13,6 @@ from mylife.models import Aricletype
 def myselfinfo(request):
     myself = Myself.objects.all();
     useTechniallist = UseTechnial.objects.filter(myself=myself)
-
     return render(request, 'myself.html',{'myselfInfo':myself[0],'useTechniallist':useTechniallist})
 
 def login_man(request):

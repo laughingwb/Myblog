@@ -48,7 +48,7 @@ def subtracttype(request):
     aricletype = Aricletype.objects.all();
     return render(request, 'man/lifemanage.html', {'typeList': aricletype})
 
-@login_required()
+
 def aricledetail(request):
     aricle_id = request.GET.get('aricle_id', '')
     print(aricle_id)
@@ -59,7 +59,7 @@ def aricledetail(request):
     return render(request, 'aricledetail.html',{'aricledetail':aricledetail,'aricle_id':aricle_id,'myselfInfo':myself[0],'commentlist':commentlist,'commentmun':len(commentlist)})
 
 
-@login_required()
+
 def postcomment(request):
     username = request.POST.get('username', '')
     email = request.POST.get('email', '')
