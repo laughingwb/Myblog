@@ -81,7 +81,9 @@ def postcomment(request):
 def showHome(request):
     notelist = Lifenote.objects.all();
     myself = Myself.objects.all();
-    return render(request, 'home.html',{'notelist':notelist,'myselfInfo':myself[0]})
+    if len(myself) > 0:
+        return render(request, 'home.html', {'notelist': notelist, 'myselfInfo': myself[0]})
+    return render(request, 'home.html',{'notelist':notelist,'myselfInfo':''})
 
 def lifelist(request):
     return render(request, 'lifelist.html')
