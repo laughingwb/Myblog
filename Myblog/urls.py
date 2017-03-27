@@ -21,12 +21,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from mylife import views as mylife_views
 from aboutme import views as aboutme_views
+from message import views as message_views
 from . import  man_urls
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$', mylife_views.showHome, name='showHome'),
     url(r'^mylife/', include('mylife.urls')),
     url(r'^aboutme/', include('aboutme.urls')),
+    url(r'^message/', include('message.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^man/', include(man_urls)),
     url(r'^login/', aboutme_views.login_man, name='login_man'),
