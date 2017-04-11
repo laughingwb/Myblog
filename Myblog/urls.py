@@ -24,6 +24,7 @@ from aboutme import views as aboutme_views
 from message import views as message_views
 from . import  man_urls
 from django.contrib.auth import views as auth_views
+import django_comments
 urlpatterns = [
     url(r'^$', mylife_views.showHome, name='showHome'),
     url(r'^mylife/', include('mylife.urls')),
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^man/', include(man_urls)),
     url(r'^login/', aboutme_views.login_man, name='login_man'),
     url(r'^login/', auth_views.login),
+    url(r'^comments/', include('django_comments.urls')),
 ]+ static(settings.STATIC_URL) + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

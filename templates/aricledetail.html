@@ -25,17 +25,20 @@
             <div class="row"><p style="font-size: 20px;margin-top: 10px;color: #45c0fd" class="text-center">评论栏</p></div>
             {% for list in commentlist %}
                 <div class="row">
-                    <div class="col-md-11" style="margin-left: 10px;">
+                    <div class="col-md-11" style="margin-left: 10px;margin-bottom: 10px">
                         <div style="border-top:1px dashed #c0c0c0;">
-                            <p style="font-size: 20px;color: #FB404B">{{ list.user_name }}</p>
-                            <p style="font-size: 16px">{{ list.content_comment }}</p>
+                            <a href="" style="margin-top: 5px" class="pull-right">回复</a>
+                            <p style="font-size: 16px;margin-top: 5px">{{ list.user_name }}   {{ list.time|date:"Y-m-d" }}</p>
+                            <p style="font-size: 14px">{{ list.content_comment }}</p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
             <form action="/mylife/postcomment/" method="POST" class="form" id="login-form" autocomplete="off">
-                <input type='hidden' name="aricleID" value={{ aricle_id }} />
+                <input sy type='hidden' name="aricleID" value={{ aricle_id }} />
             {% csrf_token %}
+                 <div class="col-md-11" style="border-top:1px dashed #c0c0c0;margin-left: 10px;margin-bottom: 10px">
+                 </div>
                 <div class="row">
                      <div class="col-md-4 col-md-offset-1">
                         <div class="form-group">

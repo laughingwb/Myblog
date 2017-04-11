@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
 from aboutme.models import Myself
-
+import django_comments
 def showmessage(request):
     myself = Myself.objects.all();
     if len(myself) > 0:

@@ -31,3 +31,5 @@ class UseTechnial(models.Model):
     technical = ForeignKey(Technical, on_delete=models.CASCADE)
     start_time = models.DateField(blank=True, null=True)
     end_time = models.DateField(blank=True, null=True)
+    def __str__(self):
+         return self.technical.name
